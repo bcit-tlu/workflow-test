@@ -39,6 +39,11 @@ jobs:
             type=raw,value={{commit_date 'YYYYMMDD-HHmmss' tz='Canada/Pacific'}}
             type=raw,value=sha-${{ github.sha }}
 
+      - name: Validate build configuration
+        uses: docker/build-push-action@v7
+        with:
+          call: check
+
       - name: Build and push Docker image
         id: push
         uses: docker/build-push-action@v7
